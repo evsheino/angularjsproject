@@ -8,26 +8,29 @@
  *
  * Main module of the application.
  */
-angular
-  .module('angularjsprojectApp', [
+angular.module('angularjsprojectApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'firebase',
+    'firebase.utils',
+    'simpleLogin'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+     .when('/list/:listId', {
+      templateUrl: 'views/list.html',
+      controller: 'ListCtrl'/*,
+      resolve: {
+        list: function($routeParams, fbutil) {
+          console.log($routeParams);
+          return fbutil.syncArray($routeParams.listId);
+        }
+      }*/
+     }
+     )
+    }
+  );

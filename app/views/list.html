@@ -1,0 +1,11 @@
+<h2>{{ list.name }}</h2>
+
+{{ list }}
+<ol>
+  <li ng-repeat="wish in list.wishes">
+    <ul>
+      <li>Nimi: {{wish.name}}</li>
+      <li>Typpi: {{wish.type}}</li>
+    </ul>
+  </li>
+</ol>
