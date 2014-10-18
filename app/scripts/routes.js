@@ -65,26 +65,19 @@ angular.module('angularjsprojectApp')
       templateUrl: 'views/login.html',
     controller: 'LoginCtrl'
     })
-
     .when('/chat', {
       templateUrl: 'views/chat.html',
     controller: 'ChatCtrl'
     })
-
     .whenAuthenticated('/account', {
       templateUrl: 'views/account.html',
     controller: 'AccountCtrl'
     })
-
-    .when('/chat', {
-      templateUrl: 'views/chat.html',
-    controller: 'ChatCtrl'
-    })
-    .when('/lists/:listId', {
+    .whenAuthenticated('/lists/:userId', {
       templateUrl: 'views/list.html',
     controller: 'ListCtrl'
     })
-    .when('/lists', {
+    .whenAuthenticated('/lists', {
       templateUrl: 'views/lists.html',
     controller: 'ListsCtrl'
     })
