@@ -1,11 +1,43 @@
-<h2>{{ list.name }}</h2>
+<h2>{{ listName }}</h2>
 
-{{ list }}
-<ol>
-  <li ng-repeat="wish in list.wishes">
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group">
+        <input class="form-control" placeholder="Tyyppi" ng-model="wish.type"/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" placeholder="Nimi" ng-model="wish.name"/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" placeholder="Tekijä" ng-model="wish.author"/>
+      </div>
+      <div class="form-group">
+        <input class="form-control" placeholder="Huomio" ng-model="wish.note"/>
+      </div>
+      <button class="btn btn-primary" type="submit" ng-click="addWish()">Lisää</button>
+    </form>
+  </div>
+</div>
+
+<br/>
+<br/>
+
+<div class="row">
+  <div class="col-md-12">
     <ul>
-      <li>Nimi: {{wish.name}}</li>
-      <li>Typpi: {{wish.type}}</li>
+      <li ng-repeat="wish in wishes">
+      <ul class="list-unstyled">
+        <li>Nimi: {{wish.name}}</li>
+        <li>Typpi: {{wish.type}}</li>
+      </ul>
+      </li>
     </ul>
-  </li>
-</ol>
+  </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+{{ list }}

@@ -57,31 +57,38 @@ angular.module('angularjsprojectApp')
   // which should only be available while logged in
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
+    .when('/', {
+      templateUrl: 'views/main.html',
+    controller: 'MainCtrl'
+    })
+    .when('/login', {
+      templateUrl: 'views/login.html',
+    controller: 'LoginCtrl'
+    })
 
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
+    .when('/chat', {
+      templateUrl: 'views/chat.html',
+    controller: 'ChatCtrl'
+    })
 
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
-      })
+    .whenAuthenticated('/account', {
+      templateUrl: 'views/account.html',
+    controller: 'AccountCtrl'
+    })
 
-      .whenAuthenticated('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
-
-      .when('/chat', {
-        templateUrl: 'views/chat.html',
-        controller: 'ChatCtrl'
-      })
-      .otherwise({redirectTo: '/'});
+    .when('/chat', {
+      templateUrl: 'views/chat.html',
+    controller: 'ChatCtrl'
+    })
+    .when('/lists/:listId', {
+      templateUrl: 'views/list.html',
+    controller: 'ListCtrl'
+    })
+    .when('/lists', {
+      templateUrl: 'views/lists.html',
+    controller: 'ListsCtrl'
+    })
+    .otherwise({redirectTo: '/'});
   }])
 
   /**
@@ -91,28 +98,28 @@ angular.module('angularjsprojectApp')
    * that we can no longer view.
    */
   .run(['$rootScope', '$location', 'simpleLogin', 'SECURED_ROUTES', 'loginRedirectPath',
-    function($rootScope, $location, simpleLogin, SECURED_ROUTES, loginRedirectPath) {
-      // watch for login status changes and redirect if appropriate
-      simpleLogin.watch(check, $rootScope);
+      function($rootScope, $location, simpleLogin, SECURED_ROUTES, loginRedirectPath) {
+        // watch for login status changes and redirect if appropriate
+        simpleLogin.watch(check, $rootScope);
 
-      // some of our routes may reject resolve promises with the special {authRequired: true} error
-      // this redirects to the login page whenever that is encountered
-      $rootScope.$on('$routeChangeError', function(e, next, prev, err) {
-        if( angular.isObject(err) && err.authRequired ) {
-          $location.path(loginRedirectPath);
+        // some of our routes may reject resolve promises with the special {authRequired: true} error
+        // this redirects to the login page whenever that is encountered
+        $rootScope.$on('$routeChangeError', function(e, next, prev, err) {
+          if( angular.isObject(err) && err.authRequired ) {
+            $location.path(loginRedirectPath);
+          }
+        });
+
+        function check(user) {
+          if( !user && authRequired($location.path()) ) {
+            $location.path(loginRedirectPath);
+          }
         }
-      });
 
-      function check(user) {
-        if( !user && authRequired($location.path()) ) {
-          $location.path(loginRedirectPath);
+        function authRequired(path) {
+          return SECURED_ROUTES.hasOwnProperty(path);
         }
       }
-
-      function authRequired(path) {
-        return SECURED_ROUTES.hasOwnProperty(path);
-      }
-    }
   ])
 
   // used by route security

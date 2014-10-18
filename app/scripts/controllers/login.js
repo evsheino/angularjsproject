@@ -22,7 +22,7 @@ angular.module('angularjsprojectApp')
       });
     };
 
-    $scope.createAccount = function(email, pass, confirm) {
+    $scope.createAccount = function(email, pass, confirm, name) {
       $scope.err = null;
       if( !pass ) {
         $scope.err = 'Please enter a password';
@@ -31,7 +31,7 @@ angular.module('angularjsprojectApp')
         $scope.err = 'Passwords do not match';
       }
       else {
-        simpleLogin.createAccount(email, pass/*, name*/)
+        simpleLogin.createAccount(email, pass, name)
           .then(function() {
             $location.path('/account');
           }, function(err) {

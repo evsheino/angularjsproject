@@ -13,6 +13,10 @@
     <label for="loginEmail">email</label>
     <input id="loginEmail" required name="email" type="email" ng-model="email" class="form-control" />
   </p>
+  <p class="form-group" ng-show="createMode">
+    <label for="loginName">name</label>
+    <input id="loginName" required name="name" ng-model="name" class="form-control" />
+  </p>
   <p class="form-group">
     <label for="loginPass">password</label>
     <input id="loginPass" required name="pass" type="password" ng-model="pass" class="form-control" />
@@ -26,7 +30,7 @@
     <button  class="btn btn-primary" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</button>
     <button  class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Register</button>
     <button  class="btn btn-primary" ng-cloak ng-show="createMode"
-            ng-click="createAccount(email, pass, confirm)">Create Account</button>
+            ng-click="createAccount(email, pass, confirm, name)">Create Account</button>
     <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
   </p>
 </form>

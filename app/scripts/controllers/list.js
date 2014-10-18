@@ -1,27 +1,27 @@
 'use strict';
-angular.module('angularjsprojectApp')
-  .controller('ListCtrl', function ($scope, $routeParams, $firebase) {
+var app = angular.module('angularjsprojectApp');
 
-    // synchronize a read-only, synchronized array of messages, limit to most recent 10
-    //$scope.list = fbutil.syncObject('lists/' + $routeParams.listId);
-    console.log($routeParams.listId);
-      var ref = new Firebase("https://intense-heat-6905.firebaseio.com/lists/" + $routeParams.listId);
-      // create an AngularFire reference to the data
-      var sync = $firebase(ref);
-      // download the data into a local object
-      $scope.list = sync.$asObject();
+app.controller('ListsCtrl', function ($scope, $routeParams, fbutil) {
+  $scope.lists = fbutil.syncArray('lists');
+  $scope.addList = function() {
+    $scope.wish.listId = listId;
+    $scope.wishes.$add($scope.wish)
+  .catch(alert);
+  };
+});
 
+app.controller('ListCtrl', function ($scope, $routeParams, fbutil) {
+  var listId = $routeParams.listId;
+  console.log($routeParams);
 
-/*
-    // provide a method for adding a message
-    $scope.addMessage = function(newMessage) {
-      if( newMessage ) {
-        // push a message to the end of the array
-        $scope.messages.$add({text: newMessage})
-          // display any errors
-          .catch(alert);
-      }
-    };
+  var wishPath = 'wishes/' + $routeParams.listId;
 
-    */
-  });
+  $scope.wishes = fbutil.syncArray(wishPath);
+  $scope.listName = $routeParams.listId;
+
+  $scope.addWish = function() {
+    $scope.wish.listId = listId;
+    $scope.wishes.$add($scope.wish)
+      .catch(alert);
+  };
+});

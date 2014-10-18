@@ -18,19 +18,4 @@ angular.module('angularjsprojectApp', [
     'firebase',
     'firebase.utils',
     'simpleLogin'
-  ])
-  .config(function($routeProvider, $locationProvider) {
-    $routeProvider
-     .when('/list/:listId', {
-      templateUrl: 'views/list.html',
-      controller: 'ListCtrl'/*,
-      resolve: {
-        list: function($routeParams, fbutil) {
-          console.log($routeParams);
-          return fbutil.syncArray($routeParams.listId);
-        }
-      }*/
-     }
-     )
-    }
-  );
+  ]);
