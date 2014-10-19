@@ -19,8 +19,10 @@ app.controller('PurchaseCtrl', function ($scope, $routeParams, fbutil, Firebase,
   $scope.purchases = fbutil.syncArray(purchasePath);
   $scope.wishes = fbutil.syncArray(wishPath);
   $scope.owner = owner;
+  $scope.currentUser = currentUser;
 
   $scope.addPurchase = function(purchase, wishId) {
+    if (!purchase) purchase = {};
     purchase.buyerName = currentUser.name;
  
     $firebase(fb.child(purchasePath)).$set(wishId, purchase)
