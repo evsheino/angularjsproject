@@ -27,8 +27,8 @@
           <!-- //angularfire -->
           <li><a ng-href="#/lists">lists</a></li>
           <li>
-            <a ng-hide-auth="" href="#/login">log in</a>
-            <a ng-show-auth="" href="#/account">account</a>
+            <a ng-hide-auth="" ng-href="#/login">log in</a>
+            <a ng-show-auth="" ng-href="#/account">account</a>
           </li>
           </ul>
         <h3 class="text-muted">angularjsproject</h3>
@@ -104,6 +104,8 @@ ga('send', 'pageview');
     <script src="scripts/directives/ngHideAuth.js"></script>
     <script src="scripts/routes.js"></script>
     <script src="scripts/controllers/list.js"></script>
+    <script src="scripts/controllers/purchase.js"></script>
     <!-- endbuild -->
+    <script src="https://cdn.firebase.com/libs/firebase-util/0.1.0/firebase-util.min.js"></script>
     </body>
     </html>

@@ -81,6 +81,10 @@ angular.module('angularjsprojectApp')
       templateUrl: 'views/lists.html',
     controller: 'ListsCtrl'
     })
+    .whenAuthenticated('/lists/:userId/purchases', {
+      templateUrl: 'views/purchases.html',
+    controller: 'PurchaseCtrl'
+    })
     .otherwise({redirectTo: '/'});
   }])
 

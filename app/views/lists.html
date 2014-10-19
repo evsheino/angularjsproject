@@ -5,7 +5,7 @@
     <h2>Lists</h2>
 
     <ul>
-      <li ng-repeat="user in users"><a ng-href={{'#/lists/' + user.uid}}>{{ user.name }}</a></li>
+      <li ng-repeat="user in users"><a ng-href="{{'#/lists/' + user.$id}}">{{ user.name }}</a></li>
     </ul>
   </div>
 </div>
