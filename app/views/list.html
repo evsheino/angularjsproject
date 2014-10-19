@@ -38,7 +38,8 @@
           <th>Nimi</th>
           <th>Tekijä</th>
           <th>Huomio</th>
-          <tr ng-repeat="wish in wishes">
+          <th></th>
+          <tr ng-repeat="(wishId, wish) in wishes">
             <td>
               <div class="form-group">
                 <input class="form-control" ng-model="wish.type"/>
@@ -60,7 +61,7 @@
               </div>
             </td>
             <td>
-              <button class="btn btn-primary" type="submit" ng-click="editWish(wish)">Tallenna</button>
+              <button class="btn btn-danger" type="submit" ng-click="deleteWish(wishId)">X</button>
             </td>
           </tr>
         </table>
