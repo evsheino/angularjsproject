@@ -1,1 +1,1 @@
-<div class="row"> <div class="col-md-12"> <h2>Lists</h2> <ul> <li ng-repeat="list in lists">{{list.$id}}</li> </ul> </div> </div> <br> <br> <br> <br> {{ lists }}
+<div class="row-fluid"> <div class="col-md-12"> {{ user.uid }} <h2>Lists</h2> <ul> <li ng-repeat="user in users"><a ng-href="{{'#/lists/' + user.$id}}">{{ user.name }}</a></li> </ul> </div> </div> <br> <br> <br> <br> {{ lists }}
