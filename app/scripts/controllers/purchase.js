@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('angularjsprojectApp');
 
-app.controller('PurchaseCtrl', function ($scope, $routeParams, fbutil, FBURL, user, $firebase) {
+app.controller('PurchaseCtrl', function ($scope, $routeParams, fbutil, Firebase, FBURL, user, $firebase) {
 
   var ownerId = $routeParams.userId;
   var owner = fbutil.syncObject('users/' + ownerId);
@@ -9,7 +9,6 @@ app.controller('PurchaseCtrl', function ($scope, $routeParams, fbutil, FBURL, us
 
   var wishPath = 'wishes/' + ownerId;
   var purchasePath = 'purchases/' + ownerId;
-  var userPath = 'users';
 
   var fb = new Firebase(FBURL);
   $scope.joined = $firebase(Firebase.util.join(

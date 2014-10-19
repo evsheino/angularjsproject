@@ -39,7 +39,7 @@
           <div class="form-group">
             <input class="form-control" placeholder="Huomio" ng-model="purchase.comment"/>
           </div>
-          <button class="btn btn-primary" type="submit" ng-click="addPurchase(purchase, wish.$id)">Tallenna</button>
+          <button class="btn btn-primary" type="submit" ng-click="addPurchase(purchase, wish.$id); formVisible = false">Tallenna</button>
           <button ng-show="formVisible && !wish.buyerName" class="btn btn-primary" ng-click="formVisible = !formVisible">Peruuta</button>
         </form>
       </td>

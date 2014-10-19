@@ -8,7 +8,7 @@ app.controller('ListsCtrl', function ($scope, $routeParams, fbutil, user) {
 
 });
 
-app.controller('ListCtrl', function ($scope, $routeParams, fbutil, user, $firebase, FBURL) {
+app.controller('ListCtrl', function ($scope, $routeParams, fbutil, user, $firebase, Firebase, FBURL) {
 
   var wishPath = 'wishes/' + user.uid;
   var owner = fbutil.syncObject('users/' + user.uid);
@@ -22,11 +22,6 @@ app.controller('ListCtrl', function ($scope, $routeParams, fbutil, user, $fireba
       .catch(function(error) { $scope.err = error.message; });
   };
 
-  $scope.editWish = function(wish) {
-    wish.userId = owner.$id;
-    $scope.wishes.$save(wish)
-      .catch(function(error) { $scope.err = error.message; });
-  };
   $scope.deleteWish = function(wishId) {
     $firebase(fb.child(wishPath)).$remove(wishId)
       .catch(function(error) { $scope.err = error.message; });

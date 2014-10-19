@@ -19,4 +19,4 @@ angular.module('angularjsprojectApp', [
     'firebase.utils',
     'simpleLogin'
   ])
-  .constant("FBURL", "https://intense-heat-6905.firebaseio.com/");
+  .constant('FBURL', 'https://intense-heat-6905.firebaseio.com/');
