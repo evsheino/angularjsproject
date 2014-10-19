@@ -1,25 +1,40 @@
-<form role="form">
-  <div class="form-group">
-    <input class="form-control" type="text" ng-model="data.list1.tuote1.band" placeholder="bänti"></input>  
-  </div>    
-</form>
+<div class="row-fluid">
+  <div class="col-md-12">
+    <h2>Lahjalista</h2>
 
-<div class="row marketing">
-  <h4>Firebase</h4>
-  <p>
-    Firebase is a powerful API to store and sync data in realtime.
-  </p>
+    <a ng-href="#/edit" class="btn btn-primary">Muokkaa</a>
 
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="alert alert-danger" ng-show="err">{{err}}</p>
+      </div>
+    </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+    <div class="row-fluid">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover table-condensed">
+            <th>Tyyppi</th>
+            <th>Nimi</th>
+            <th>Tekijä</th>
+            <th>Huomio</th>
+            <tr ng-repeat="wish in wishes">
+              <td>
+                {{ wish.type }}
+              </td>
+              <td>
+                {{ wish.name }}
+              </td>
+              <td>
+                {{ wish.author }}
+              </td>
+              <td>
+                {{ wish.note }}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

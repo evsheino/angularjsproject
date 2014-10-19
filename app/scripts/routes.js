@@ -57,9 +57,13 @@ angular.module('angularjsprojectApp')
   // which should only be available while logged in
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    .when('/', {
+    .whenAuthenticated('/', {
       templateUrl: 'views/main.html',
-    controller: 'MainCtrl'
+    controller: 'ListCtrl'
+    })
+    .whenAuthenticated('/edit', {
+      templateUrl: 'views/list.html',
+    controller: 'ListCtrl'
     })
     .when('/login', {
       templateUrl: 'views/login.html',
@@ -74,18 +78,14 @@ angular.module('angularjsprojectApp')
     controller: 'AccountCtrl'
     })
     .whenAuthenticated('/lists/:userId', {
-      templateUrl: 'views/list.html',
-    controller: 'ListCtrl'
+      templateUrl: 'views/purchases.html',
+    controller: 'PurchaseCtrl'
     })
     .whenAuthenticated('/lists', {
       templateUrl: 'views/lists.html',
     controller: 'ListsCtrl'
     })
-    .whenAuthenticated('/lists/:userId/purchases', {
-      templateUrl: 'views/purchases.html',
-    controller: 'PurchaseCtrl'
-    })
-    .otherwise({redirectTo: '/'});
+    .otherwise({redirectTo: '/login'});
   }])
 
   /**

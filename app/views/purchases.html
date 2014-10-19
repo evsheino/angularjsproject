@@ -8,65 +8,54 @@
 
 <div class="row-fluid">
   <div class="col-md-12">
-      <div class="table-responsive">
-        <table class="table table-hover table-condensed">
-          <th>Tyyppi</th>
-          <th>Nimi</th>
-          <th>Tekijä</th>
-          <th>Huomio</th>
-          <th>Hankinta</th>
-          <th></th>
-          <tr ng-repeat-start="wish in joined">
-            <td>
-              {{ wish.type }}
-            </td>
-            <td>
-              {{ wish.name }}
-            </td>
-            <td>
-              {{ wish.author }}
-            </td>
-            <td>
-              {{ wish.note }}
-            </td>
-            <td>
+    <div class="table-responsive">
+      <table class="table table-hover table-condensed">
+        <th>Tyyppi</th>
+        <th>Nimi</th>
+        <th>Tekijä</th>
+        <th>Huomio</th>
+        <th>Hankkija</th>
+        <th>Kommentti</th>
+        <tr ng-repeat="wish in joined">
+          <td>
+            {{ wish.type }}
+          </td>
+          <td>
+            {{ wish.name }}
+          </td>
+          <td>
+            {{ wish.author }}
+          </td>
+          <td>
+            {{ wish.note }}
+          </td>
+          <td ng-if="wish.buyerName">
+            {{ wish.buyerName }}
+          </td>
+          <td ng-if="!wish.buyerName && !formVisible">
+          </td>
+          <td ng-if="wish.buyerName">
+            {{ wish.comment }}
+          </td>
+          <td ng-if="!wish.buyerName && !formVisible">
+          </td>
+          <td ng-show="formVisible && !wish.buyerName" colspan=3>
+            <form>
               <div class="form-group">
                 <input class="form-control" placeholder="Huomio" ng-model="purchase.comment"/>
               </div>
-            </td>
-            <td>
-              <button class="btn btn-primary" type="submit" ng-click="addPurchase(purchase, wish.$id)">Tallenna</button>
-            </td>
-          </tr>
-          <tr ng-repeat-end ng-if="wish.buyerName">
-            <td>
-              {{ wish.buyerName }}
-            </td>
-            <td colspan=5>
-              {{ wish.comment }}
-            </td>
-          </tr>
-        </table>
-      </div>
-    </form>
+              <button class="btn btn-primary" type="submit" ng-click="addPurchase(purchase, wish.$id)">Hankittu</button>
+              <button ng-show="formVisible && !wish.buyerName" class="btn btn-primary" ng-click="formVisible = !formVisible">Peruuta</button>
+            </form>
+          </td>
+          <td ng-show="wish.buyerName" >
+            <button class="btn btn-danger" ng-click="deletePurchase(wish.$id)">X</button>
+          </td>
+          <td ng-show="!wish.buyerName && !formVisible" >
+            <button class="btn btn-primary" ng-click="formVisible = !formVisible">Lisää</button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <ul>
-      <li ng-repeat="wish in wishes">
-      <ul class="list-unstyled">
-        <li>Nimi: {{wish.name}}</li>
-        <li>Typpi: {{wish.type}}</li>
-      </ul>
-      </li>
-    </ul>
-  </div>
-</div>
-
-{{ wishes }}
-<br/>
-{{ purchases }}
-<br/>
-joined:
-{{ joined }}

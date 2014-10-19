@@ -9,8 +9,8 @@ app.controller('ListsCtrl', function ($scope, $routeParams, fbutil, user) {
 
 app.controller('ListCtrl', function ($scope, $routeParams, fbutil, user) {
 
-  var wishPath = 'wishes/' + $routeParams.userId;
-  var owner = fbutil.syncObject('users/' + $routeParams.userId);
+  var wishPath = 'wishes/' + user.uid;
+  var owner = fbutil.syncObject('users/' + user.uid);
 
   $scope.wishes = fbutil.syncArray(wishPath);
   $scope.owner = owner;
