@@ -1,1 +1,1 @@
-<h2>Lists</h2> <ul> <li ng-repeat="user in users"><a ng-href="{{'#/lists/' + user.$id}}">{{ user.name }}</a></li> </ul>
+<h2>Lists</h2> <ul> <li ng-repeat="user in users" ng-show="user.$id != currentUserId"><a ng-href="{{'#/lists/' + user.$id}}">{{ user.name }}</a></li> </ul>

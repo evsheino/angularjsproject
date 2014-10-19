@@ -3,6 +3,7 @@ var app = angular.module('angularjsprojectApp');
 
 app.controller('ListsCtrl', function ($scope, $routeParams, fbutil, user) {
 
+  $scope.currentUserId = user.uid;
   $scope.users = fbutil.syncArray('users');
 
 });
